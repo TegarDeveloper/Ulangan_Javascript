@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulasi Array Kendaraan</title>
+</head>
+<body>
+    <h2>Data Kendaraan:</h2>
+    <ul id="dataKendaraan"></ul>
+
+    <h3>Akses Kendaraan 'Mobil'</h3>
+    <label for="indexMobil">Masukkan indeks:</label>
+    <input type="number" id="indexMobil" placeholder="Indeks">
+    <button onclick="aksesMobil()">Akses Mobil</button>
+    <p id="hasilAksesMobil"></p>
+
+    <h3>Hapus Satu Data Kendaraan</h3>
+    <label for="hapusKendaraan">Masukkan indeks yang akan dihapus:</label>
+    <input type="number" id="hapusKendaraan" placeholder="Indeks">
+    <button onclick="hapusKendaraan()">Hapus Kendaraan</button>
+    <p id="hasilHapusKendaraan"></p>
+    <form action="index.html">
+        <button>Kemabali</button>
+    </form>
+    <script>
+        // Membuat array kendaraan
+        var kendaraanArray = ['motor', 'mobil', 'bus', 'truk', 'sepeda', 'kereta', 'pesawat', 'kapal', 'skuter', 'helikopter',];
+
+        // Menampilkan semua data dalam array
+        function tampilkanDataKendaraan() {
+            var dataKendaraanElement = document.getElementById('dataKendaraan');
+            dataKendaraanElement.innerHTML = '';
+
+            kendaraanArray.forEach(function(kendaraan) {
+                var listItem = document.createElement('li');
+                listItem.textContent = kendaraan;
+                dataKendaraanElement.appendChild(listItem);
+            });
+        }
+
+        // Akses nilai value dari kendaraan 'mobil' pada indeks tertentu
+        function aksesMobil() {
+            var indexMobil = document.getElementById('indexMobil').value;
+            var hasilAksesMobilElement = document.getElementById('hasilAksesMobil');
+
+            if (!isNaN(indexMobil) && indexMobil >= 0 && indexMobil < kendaraanArray.length) {
+                var mobilValue = kendaraanArray[indexMobil];
+                hasilAksesMobilElement.textContent = 'Nilai value untuk kendaraan pada indeks ' + indexMobil + ' adalah: ' + mobilValue;
+            } else {
+                hasilAksesMobilElement.textContent = 'Indeks tidak valid. Masukkan indeks yang benar.';
+            }
+        }
+
+        // Menghapus satu data kendaraan menggunakan unshift
+        function hapusKendaraan() {
+            var indexHapus = document.getElementById('hapusKendaraan').value;
+            var hasilHapusKendaraanElement = document.getElementById('hasilHapusKendaraan');
+
+            if (!isNaN(indexHapus) && indexHapus >= 0 && indexHapus < kendaraanArray.length) {
+                var kendaraanYangDihapus = kendaraanArray.splice(indexHapus, 1);
+                tampilkanDataKendaraan(); // Memperbarui tampilan array setelah penghapusan
+                hasilHapusKendaraanElement.textContent = 'Kendaraan yang dihapus: ' + kendaraanYangDihapus;
+            } else {
+                hasilHapusKendaraanElement.textContent = 'Indeks tidak valid. Masukkan indeks yang benar.';
+            }
+        }
+
+
+        // Menampilkan data kendaraan saat halaman pertama kali dimuat
+        tampilkanDataKendaraan();
+    </script>
+</body>
+</html>

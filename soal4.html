@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Matematika</title>
+</head>
+<body>
+    <h2>Kalkulator Matematika</h2>
+
+    <label for="angka1">Masukkan Angka Pertama:</label>
+    <input type="number" id="angka1" placeholder="Angka Pertama">
+
+    <label for="angka2">Masukkan Angka Kedua:</label>
+    <input type="number" id="angka2" placeholder="Angka Kedua">
+
+    <button onclick="hitung()">Hitung</button>
+
+    <h3>Hasil Perhitungan:</h3>
+    <p id="hasilPenjumlahan"></p>
+    <p id="hasilPengurangan"></p>
+    <p id="hasilPerkalian"></p>
+    <p id="hasilPembagian"></p>
+    <p id="bilanganTerbesar"></p>
+
+    <form action="index.html">
+        <button>Kemabali</button>
+    </form>
+    <script>
+        function hitung() {
+            // Mengambil nilai input dari pengguna
+            var angka1 = parseFloat(document.getElementById('angka1').value);
+            var angka2 = parseFloat(document.getElementById('angka2').value);
+
+            // Melakukan perhitungan matematika dasar
+            var hasilPenjumlahan = angka1 + angka2;
+            var hasilPengurangan = angka1 - angka2;
+            var hasilPerkalian = angka1 * angka2;
+
+            // Menangani pembagian dengan memeriksa apakah angka2 tidak sama dengan 0
+            var hasilPembagian = angka2 !== 0 ? angka1 / angka2 : 'Tidak dapat dibagi oleh 0';
+
+            // Mencari bilangan terbesar
+            var bilanganTerbesar = angka1 > angka2 ? angka1 : angka2;
+
+            // Menampilkan hasil perhitungan pada elemen HTML
+            document.getElementById('hasilPenjumlahan').textContent = 'Penjumlahan: ' + hasilPenjumlahan;
+            document.getElementById('hasilPengurangan').textContent = 'Pengurangan: ' + hasilPengurangan;
+            document.getElementById('hasilPerkalian').textContent = 'Perkalian: ' + hasilPerkalian;
+            document.getElementById('hasilPembagian').textContent = 'Pembagian: ' + hasilPembagian;
+            document.getElementById('bilanganTerbesar').textContent = 'Bilangan Terbesar: ' + bilanganTerbesar;
+        }
+    </script>
+</body>
+</html>
